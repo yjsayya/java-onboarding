@@ -53,17 +53,11 @@ class ApplicationTest {
 
         @Test
         void case3() {
-            String cryptogram = "apppa";
-            String result = "apa";
+            String cryptogram = "tryywooooooooonmwefeff";
+            String result = "trwnmwefe";
             assertThat(Problem2.solution(cryptogram)).isEqualTo(result);
         }
 
-        @Test
-        void case4() {
-            String cryptogram = "aaaaabb";
-            String result = "";
-            assertThat(Problem2.removeDuplicatedLetter(cryptogram)).isEqualTo(result);
-        }
     }
 
     @Nested

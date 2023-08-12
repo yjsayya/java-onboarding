@@ -5,28 +5,38 @@ import java.util.Map;
 
 public class Problem4 {
     public static String solution(String words) {
+        return changeWord(words);
+    }
+
+    private static HashMap<Character,Character> makeAlphapetMap() {
         String abc = "abcdefghijklmnopqrstuvwxyz";
-        Map<Character, Character> dic = new HashMap<>();
+        HashMap<Character, Character> dic = new HashMap<>();
 
         for (int i = 0; i < abc.length(); i++) {
             char key = abc.charAt(i);
-            char value = abc.charAt(abc.length() - 1 - i);
+            char value = abc.charAt(abc.length()-1-i);
             dic.put(key, value);
         }
+        return dic;
+    }
 
-        StringBuilder ans = new StringBuilder();
+
+    private static String changeWord(String words) {
+        StringBuilder sb_words = new StringBuilder();
+        HashMap<Character,Character> alphabetDic = makeAlphapetMap();
+
         for (char word : words.toCharArray()) {
             if (Character.isLetter(word)) {
-                char lowerWord = Character.toLowerCase(word);
+                char i = Character.toLowerCase(word);
                 if (Character.isUpperCase(word))
-                    ans.append(Character.toUpperCase(dic.get(lowerWord)));
+                    sb_words.append(Character.toUpperCase(alphabetDic.get(i)));
                 else
-                    ans.append(dic.get(lowerWord));
-            } else {
-                ans.append(word);
+                    sb_words.append(alphabetDic.get(i));
+            } else if (word == ' ') {
+                sb_words.append(' ');
             }
         }
-        return ans.toString();
+        return sb_words.toString();
     }
 
 

@@ -1,40 +1,49 @@
 package onboarding;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
-
 public class Problem2 {
+
     public static String solution(String cryptogram) {
-        while (hasDuplicateCharacters(cryptogram)) {
-            cryptogram = removeDuplicatedLetter(cryptogram);
-        }
-        return cryptogram;
+        String ans = "";
+        return decode(cryptogram);
     }
 
-    /**
-     * 중복되는 알파벳 있는지 검사
-     */
-    public static boolean hasDuplicateCharacters(String input) {
-        Set<Character> characterSet = new HashSet<>();
-        for (char c : input.toCharArray()) {
-            characterSet.add(c);
-        }
-        return input.length() != characterSet.size();
-    }
 
     /**
-     * 중복되는 알파벳 제거
+     *
      */
-    public static String removeDuplicatedLetter(String cryptogram) {
-        Stack<String> stack = new Stack<>();
-        for (int i = 0; i < cryptogram.length(); i++) {
-            String ch = String.valueOf(cryptogram.charAt(i));
-            if (!stack.isEmpty() && stack.peek().equals(ch))
-                stack.pop();
-            else
-                stack.add(ch);
-        }
-        return String.join("",stack);
+    static String decode(String cryptogram) {
+        StringBuilder code = new StringBuilder(cryptogram);
+        int codeLength = 0;
+
+        do {
+            codeLength = code.length();
+            code = deleteDuplicatedAlphabet(code);
+        } while (code.length() != codeLength && code.length() != 0);
+
+        return code.toString();
     }
+
+
+    /**
+     * 중복된 알파벳 제거
+     */
+    static StringBuilder deleteDuplicatedAlphabet(StringBuilder code) {
+        StringBuilder result = new StringBuilder();
+        boolean isDuplicated = false;
+
+        code.append(" ");
+        for (int i = 0; i < code.length()-1; i++) {
+            if (code.charAt(i) == code.charAt(i+1)) {
+                isDuplicated = true;
+                continue;
+            }
+            if (isDuplicated) {
+                isDuplicated = false;
+                continue;
+            }
+            result.append(code.charAt(i));
+        }
+        return result;
+    }
+
 }

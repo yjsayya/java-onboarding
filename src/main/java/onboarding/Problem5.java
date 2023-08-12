@@ -18,5 +18,4 @@ public class Problem5 {
         return ans;
     }
 
-
 } // class problem5
