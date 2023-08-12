@@ -43,14 +43,12 @@ public class Problem7 {
         }
 
         // 4. 정리해서 답 내기
-        List<String> ans = friendScore.entrySet().stream()
+        return friendScore.entrySet().stream()
                 .filter(entry -> entry.getValue() > 0) // Keep only entries with value > 0
                 .sorted(Map.Entry.<String, Integer>comparingByValue(Comparator.reverseOrder()) // Sort by value in descending order
                         .thenComparing(Map.Entry.comparingByKey(Comparator.naturalOrder()))) // Sort by key in natural order, if values are equal
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-
-        return ans;
     }
 
 }
