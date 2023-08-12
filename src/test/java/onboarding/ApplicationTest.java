@@ -50,6 +50,20 @@ class ApplicationTest {
             String result = "";
             assertThat(Problem2.solution(cryptogram)).isEqualTo(result);
         }
+
+        @Test
+        void case3() {
+            String cryptogram = "apppa";
+            String result = "apa";
+            assertThat(Problem2.solution(cryptogram)).isEqualTo(result);
+        }
+
+        @Test
+        void case4() {
+            String cryptogram = "aaaaabb";
+            String result = "";
+            assertThat(Problem2.removeDuplicatedLetter(cryptogram)).isEqualTo(result);
+        }
     }
 
     @Nested
@@ -130,4 +144,5 @@ class ApplicationTest {
             assertThat(Problem7.solution(user, friends, visitors)).isEqualTo(result);
         }
     }
+
 }

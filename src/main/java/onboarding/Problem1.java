@@ -1,7 +1,6 @@
 package onboarding;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 class Problem1 {
     public static int POBI_WIN = 1;
@@ -9,14 +8,15 @@ class Problem1 {
     public static int DRAW = 0;
     public static int EXCEPT = -1;
 
+
     public static int solution(List<Integer> pobi, List<Integer> crong) {
         // 1. 예외 확인하기
         if (isInvalid(pobi) || isInvalid(crong))
             return EXCEPT;
 
         // 2. pobi와 crong의 최종 점수 구하기
-        int pobiScore = getFinalNumber(pobi);
-        int crongScore = getFinalNumber(crong);
+        int pobiScore = getFinalScore(pobi);
+        int crongScore = getFinalScore(crong);
 
         // 3. pobi와 crong의 최종 승자 정하기
         if (pobiScore == crongScore)
@@ -48,20 +48,19 @@ class Problem1 {
         return false;
     }
 
+
     /**
      * << player의 최종 점수 구하기 >></>
      * -- 왼쪽 페이지 점수 vs 오른쪽 페이지 점수
      * -- 각 자리수 더하기 vs 각 자리수 곱하기
      */
-    public static int getFinalNumber(List<Integer> player) {
-        return Math.max(getBiggerNumber(player.get(0)), getBiggerNumber(player.get(1)));
+    public static int getFinalScore(List<Integer> player) {
+        return Math.max(getBiggerScore(player.get(0)), getBiggerScore(player.get(1)));
     }
-
-    public static int getBiggerNumber(int page) {
+    public static int getBiggerScore(int page) {
         String pageStr = String.valueOf(page);
         return Math.max(addNumber(pageStr), multiplyNumber(pageStr));
     }
-
     public static int addNumber(String page) {
         int num = 0;
         for (int i = 0; i < page.length(); i++) {
@@ -69,7 +68,6 @@ class Problem1 {
         }
         return num;
     }
-
     public static int multiplyNumber(String page) {
         int num = 1;
         for (int i = 0; i < page.length(); i++) {
@@ -79,4 +77,4 @@ class Problem1 {
     }
 
 
-}
+} // problem 1 class
